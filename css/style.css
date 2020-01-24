@@ -1,0 +1,45 @@
+/* 
+    This documentation is desing by:
+    Author:  Diego Hilderink Dominguez
+    License: GLP 2020
+    Date:    24-01-2020
+
+    This section is proper to designers, anyhitng you change here, will have some kind of effect
+    into your html.
+
+    This css has preffered classes and id.
+    The changes that u make in this document is under your responsability.
+*/
+
+
+/*
+    This is the preffered navigation bar class.
+*/
+
+.navbar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;   /*If you change this u should know that you'll change the color*/
+}
+  
+.liNav {
+    float: left;
+}
+  
+.liNav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+.liNav a:hover {
+    background-color: #111;
+}
+
+/*
+
+*/
