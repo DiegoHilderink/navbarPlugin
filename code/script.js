@@ -1,15 +1,20 @@
 
 $(window).on('load', () => {
-    var ulconf = {'mark': '<ul>', 'class' : 'list', 'text' : 'h'}
-   
-    var liconf = {'mark': '<li>'
-              , 'class' : 'opt'
-              ,  'text' : ' '}
+    var conf = {
+        'mark': 'button'
+    ,    'id' : 'btn'
+    , 'class' : 'primary'
+    ,  'text' : 'Boton de Prueba'}
 
-    $('body').neptune('addItem', ulconf, 'body');
-    // $('body').neptune('addItem', liconf, 'ul');
-    // $('body').neptune('addItem', liconf, 'ul');
-    // $('body').neptune('addItem', liconf, 'ul');
-    // $('body').neptune('addItem', liconf, 'ul');
-    // $('body').neptune('addItem', liconf, 'ul');
+    var elem = {'id'   : 'btn'}
+    var nav  = {'op1'  : 'Menu'
+              , 'op2'  : 'Contactos'
+              , 'op3'  : 'Contactos'}
+    
+    var navba = {'class' : 'navbar' }
+    $('body').neptune('addNav', 'body');
+    //$('body').neptune('killElem', navba, 'body')
+
+
+   // $('body').neptune('killElem', elem)
 });
