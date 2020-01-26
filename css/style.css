@@ -1,10 +1,9 @@
 /* 
-    This documentation is desing by:
-    Author:  Diego Hilderink Dominguez
-    License: GLP 2020
-    Date:    24-01-2020
+    @author: Diego Hilderink Dominguez
+    @e-mail: diego.hilderink@iesdonana.org
+    License: GNU License 2020
 
-    This section is proper to designers, anyhitng you change here, will have some kind of effect
+    This section is proper to designers, anything you change here, will have some kind of effect
     into your html.
 
     This css has preffered classes and id.
@@ -14,14 +13,14 @@
 
 /*
     This is the preffered navigation bar class.
+    You can change this default parametres or make yourself new one.
 */
-
 .navbar{
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;   /*If you change this u should know that you'll change the color*/
+    background-color: #333; 
 }
   
 .liNav {
@@ -35,11 +34,23 @@
     padding: 14px 16px;
     text-decoration: none;
 }
+
+.liNav ul {
+    list-style-type: none;
+}
+
+.liNav ul li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.liNav ul li a:hover{
+    background-color: #111;
+}
   
 .liNav a:hover {
     background-color: #111;
 }
-
-/*
-
-*/

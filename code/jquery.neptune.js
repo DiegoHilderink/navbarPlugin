@@ -13,7 +13,7 @@ const errors = {
     'type'  : "That kind of element is not defined."
 }
 
-//Prefer configuration for navbars
+//Prefer configuration for simple navbars
 const prefNav = {
     'op1': 'Menu',
     'op2': 'Contactos',
@@ -21,16 +21,10 @@ const prefNav = {
     'op4': 'Ayuda'
 }
 
-
-//Methods const
-//ATENTION: THE CONFIGURATION OF THE METHOD HAS TO BE AN ASOCIATIVE ARRAY
-//WHICH HAS AS FIRST ELEMENT THE TYPE OF THE ELEMENT
-
-
-//TODO => Documentation
+//Methods constants. You can call this methos via $('something').neptune.('method',...)
 const methods = {
     addElem: (father, config) => {
-        if (checkFather()) {
+        if (checkFather(father)) {
             errorExit('father')
             return
         }
@@ -40,33 +34,73 @@ const methods = {
         config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
     },
     killElem: (elem) => {
-
-        if ('id' in elem) {
-            remvElem('#' + elem['id'])
-        } else if ('class' in elem) {
-            remvElem('.' + elem['class'])
-        } else {
-            errorExit('config')
+        if(typeof(elem) === 'string'){ 
+            if(elem[0] === '#'){
+                remvElem('#' + elem)
+            } else if (elem[0] === '.'){
+                remvElem('.' + elem)
+            } else{
+                errorExit('config')
+            }
+        } else {            
+            if ('id' in elem) {
+                remvElem('#' + elem['id'])
+            } else if ('class' in elem) {
+                remvElem('.' + elem['class'])
+            } else {
+                errorExit('config')
+            }
         }
     },
     addNav: (father, config) => {
-        if (checkFather()) {
+        if (checkFather(father)) {
             errorExit('father')
             return
         }
 
         $.isEmptyObject(config) ? config = prefNav : config
 
-        $('<div>').append(
-            $('<ul>').addClass('navbar')
-        ).appendTo($(father))
+        if (father === 'body'){
+            $('<div>').append(
+                $('<ul>').addClass('navbar')
+            ).addClass('navDiv').appendTo($(father));
 
-        $.each(config, (k, v) => {
-            $('<li>')
-                .attr('id', (k)).append($('<a>').text(v))
-                .addClass('liNav')
-                .appendTo($('.navbar'));
-        });
+            genList(config, '.navbar', '');
+       } else {
+
+            var id = 'subMenu'+father.substr(1)+'Son'
+            $('<ul>').addClass('subMenu').attr({id: id})
+            .appendTo($(father))
+
+            id = '#'+id
+            genList(config, id, 'subMenu')
+       }
+    },
+    addHiden: (father) =>{
+        if (checkFather(father)) {
+            errorExit('father')
+            return
+        }
+
+        var aux = $(father)
+        var son = father+' #subMenu'+aux.attr('id')+'Son' 
+        
+        aux.attr('show', false)
+        $(son).hide() && aux.attr('show', true)
+        aux.mouseenter(() => {
+            aux.attr('show') === 'false' ?  
+                $(son).hide(1500) && aux.attr('show', true)
+            :   $(son).show(1500) && aux.attr('show', false)
+        })
+
+        //These are a few option that might be implemented in a future.
+        // $(son).hide()
+        // aux.mouseenter(() => {
+        //     $(son).hide(1500)
+        // })
+        // aux.mouseleave(() =>{
+        //     $(son).show(1500) && aux.attr('show', false)
+        // })
     }
 }
 
@@ -96,6 +130,16 @@ function lecturaConf(config) {
     return aux
 }
 
+function genList(config, father, id){
+    $.each(config, (k, v) => {
+        $('<li>')
+            .attr('id', id+k).append($('<a>').text(v))
+            .addClass('liNav')
+            .appendTo($(father));
+
+        });
+}
+
 function isIn(k, config) {
     return k in config;
 }
@@ -105,11 +149,14 @@ function remvElem(mark) {
 }
 
 function checkFather(father) {
-    return $(father).length
+    return !$(father).length 
 }
 
-//Change this
 function errorExit(error) {
     var aux = errors[error];
     aux ? console.warn(aux) : errorExit('error');
+}
+
+function prueba(output){
+    console.log(output)
 }
