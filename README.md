@@ -50,10 +50,15 @@ var nav  = {
 #### **Method list:**
 
 <p>
+   
 * 'addElem' : Create an element bellow the father with the configuration that you designd. 
+   
 * 'killElem' : Delete an element that you want. It might be a 'conf', an id, a class or even a mark.
+
 * 'addNav' : Creates a navbar with the options provide. If the 'conf' is null, it'll charge a prefferred menu.
+
 * 'addHiden' : Allows a navbar to be hidden or showed.
+
 </p>
 
 ### Code examples:
