@@ -1,15 +1,15 @@
 # **Neptune Plugin**
 
-##### en/EN
+### en/EN
 
 ##### This API has been written in order to simply the use of this plugin in you own proyect. It's written in JQuery.
 
 ###### **WARNING**
 
 <p>
-    Any change that you make in the original code, it'll will be your responsability. The errors has alredy been implemented, so you can code without any careless.
+   Any change that you make in the original code, it'll will be your responsability. The errors has alredy been implemented, so you can code without any careless.
 
-    Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. Also the code allows you to use other funcionalities like adding or deleting any specific elements in the html documeent. 
+   Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. Also the code allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
 </p>
 
 #### **Starting:**
@@ -71,7 +71,7 @@ $(window).on('load', () => {
 }
 ```
 
-##### es/ES
+### es/ES
 
 ##### Esta documentación ha sido elaborada con el fin de facilitar el empleo de este plugin en tu proyecto. Dicho plugin está escrito en JQuery. 
 
