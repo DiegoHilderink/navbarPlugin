@@ -7,7 +7,7 @@
 ###### **WARNING**
 
 <p>
-   Any change that you make in the original code, it'll will be your responsability. The errors have already been implemented, so you can code without any careless.
+   Any change that you make in the original code, it'll be your responsability. The errors have already been implemented, so you can code without any worries.
 
    Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. The code also allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
 </p>
@@ -24,7 +24,7 @@ The callable is made by the specific line code:
 #### **Elements:**
 
 <p>
-    As i said before, the 'conf' parameter, contains the configuration of the elements. It's an assossciative array that has keys, rules that you'll need to have in mind at the time you when you design a new element. Elements are treated like objects with attributes.
+    As I said before the 'conf' parameter, contains the configuration of the elements. It's an assossciative array that has keys, rules that you'll need to have in mind at the time you when you design a new element. Elements are treated like objects with attributes.
 </p>
 
 ###### Examples:
@@ -51,13 +51,13 @@ var nav  = {
 
 <p>
    
-* 'addElem' : Create an element bellow the father with the configuration that you designd. 
+* 'addElem' : Create an element bellow the father with the configuration that you designed. 
    
 * 'killElem' : Delete an element that you want. It might be a 'conf', an id, a class or even a mark.
 
 * 'addNav' : Creates a navbar with the options provide. If the 'conf' is null, it'll charge a prefferred menu.
 
-* 'addHiden' : Allows a navbar to be hidden or showed.
+* 'addHiden' : Allows a navbar to be hidden or shown.
 
 </p>
 
