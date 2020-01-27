@@ -9,7 +9,7 @@
 <p>
    Any change that you make in the original code, it'll be your responsability. The errors have already been implemented, so you can code without any worries.
 
-   Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. The code also allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
+   Beforehand, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. The code also allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
 </p>
 
 #### **Starting:**
