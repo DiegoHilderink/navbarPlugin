@@ -1,11 +1,84 @@
 # **Neptune Plugin**
 
+##### en/EN
+
+##### This API has been written in order to simply the use of this plugin in you own proyect. It's written in JQuery.
+
+###### **WARNING**
+
+<p>
+    Any change that you make in the original code, it'll will be your responsability. The errors has alredy been implemented, so you can code without any careless.
+
+    Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. Also the code allows you to use other funcionalities like adding or deleting any specific elements in the html documeent. 
+</p>
+
+#### **Starting:**
+
+The callable it's made by the specific line code:
+
+    $('body').neptune.('method', 'father', conf);
+* ###### 'method': Method that you want to use.
+* ###### 'father': The father of the element. It has to be an id, a class or a mark.
+* ###### 'conf': The conf of the element.
+
+#### **Elements:**
+
+<p>
+    As i said before, the 'conf' parameter, contains the configuration of the elements. It's an assossciative array that has rules that you'll need to have in mind at the time you design an element. Elements are treated like objects with attributes.
+</p>
+
+###### Examples:
+
+
+```
+//configuration of a button 
+var conf = {
+        'mark': 'button'
+    ,    'id' : 'btn'
+    , 'class' : 'primary'
+    ,  'text' : 'Example Name'
+}
+
+//Navbar elements
+var nav  = {
+        'op1'  : 'Menu'
+    ,   'op2'  : 'Help'
+    ,   'op3'  : 'Contacts'
+}
+```
+
+#### **Method list:**
+
+<p>
+* 'addElem' : Create an elements bellow the father with the configuration you passed. 
+* 'killElem' : Delete an element that you give. it might be a onfiguration, an id, a class or even a mark.
+* 'addNav' : Creates a navbar with the options you give him. If the conf is null, it'll charge an preffered menu.
+* 'addHiden' : Allows a navbar to be hidden or showed.
+</p>
+
+### Code examples:
+
+```
+$(window).on('load', () => {
+    var conf = {
+        'mark': 'button'
+    ,    'id' : 'btn'
+    , 'class' : 'primary'
+    ,  'text' : 'Example Button'
+    }
+    
+    $('body').neptune('addElem', 'body', conf)
+}
+```
+
+##### es/ES
+
 ##### Esta documentación ha sido elaborada con el fin de facilitar el empleo de este plugin en tu proyecto. Dicho plugin está escrito en JQuery. 
 
 ###### **ATENCIÓN:** 
 
 <p>
-Cualquier cambio que se realice en el código fuente, será resposabilidad suya. Las comprobaciones de errores ya han sido implementadas por mi parte para facilitarle al programador la implementación del codigo.
+Cualquier cambio que se realice en el código fuente, será resposabilidad suya. Las comprobaciones de errores ya han sido implementadas para facilitarte la implementación del codigo.
 
 Antes de nada hay que dar a entender que la idea de este plugin trata de permitir la creación de barras de menús dinámicos. Además implementa otras funcionalidades como la de añadir o eliminar elementos específicos del documento html.
 </p>
@@ -22,7 +95,7 @@ La llamada a sus métodos se realiza mediante la línea de código:
 #### **Elementos**:
 
 <p>
- Como hemos visto, 'conf' es la configuració de un elemento, está estructurado por un array asociativo que contiene una serie de claves que deberás tener en cuenta en función de lo que quieras añadir a dichos elementos.
+ Como hemos visto, 'conf' es la configuración de un elemento, está estructurado por un array asociativo que contiene una serie de claves que deberás tener en cuenta en función de lo que quieras añadir a dichos elementos.
 </p>
 
 ###### Ejemplos:
