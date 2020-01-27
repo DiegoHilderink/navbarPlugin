@@ -2,19 +2,19 @@
 
 ### en/EN
 
-##### This API has been written in order to simply the use of this plugin in you own proyect. It's written in JQuery.
+##### This API has been written in order to simplify the use of this plugin in you own project. It's written in JQuery.
 
 ###### **WARNING**
 
 <p>
-   Any change that you make in the original code, it'll will be your responsability. The errors has alredy been implemented, so you can code without any careless.
+   Any change that you make in the original code, it'll will be your responsability. The errors have already been implemented, so you can code without any careless.
 
-   Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. Also the code allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
+   Before anything, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. The code also allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
 </p>
 
 #### **Starting:**
 
-The callable it's made by the specific line code:
+The callable is made by the specific line code:
 
     $('body').neptune.('method', 'father', conf);
 * ###### 'method': Method that you want to use.
@@ -24,7 +24,7 @@ The callable it's made by the specific line code:
 #### **Elements:**
 
 <p>
-    As i said before, the 'conf' parameter, contains the configuration of the elements. It's an assossciative array that has rules that you'll need to have in mind at the time you design an element. Elements are treated like objects with attributes.
+    As i said before, the 'conf' parameter, contains the configuration of the elements. It's an assossciative array that has keys, rules that you'll need to have in mind at the time you when you design a new element. Elements are treated like objects with attributes.
 </p>
 
 ###### Examples:
@@ -50,9 +50,9 @@ var nav  = {
 #### **Method list:**
 
 <p>
-* 'addElem' : Create an elements bellow the father with the configuration you passed. 
-* 'killElem' : Delete an element that you give. it might be a onfiguration, an id, a class or even a mark.
-* 'addNav' : Creates a navbar with the options you give him. If the conf is null, it'll charge an preffered menu.
+* 'addElem' : Create an element bellow the father with the configuration that you designd. 
+* 'killElem' : Delete an element that you want. It might be a 'conf', an id, a class or even a mark.
+* 'addNav' : Creates a navbar with the options provide. If the 'conf' is null, it'll charge a prefferred menu.
 * 'addHiden' : Allows a navbar to be hidden or showed.
 </p>
 
@@ -73,7 +73,7 @@ $(window).on('load', () => {
 
 ### es/ES
 
-##### Esta documentación ha sido elaborada con el fin de facilitar el empleo de este plugin en tu proyecto. Dicho plugin está escrito en JQuery. 
+##### Esta documentación ha sido elaborada con el fin de facilitar el empleo de este plugin en tu projecto. Dicho plugin está escrito en JQuery. 
 
 ###### **ATENCIÓN:** 
 
