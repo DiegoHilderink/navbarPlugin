@@ -3,17 +3,13 @@
     @e-mail: diego.hilderink@iesdonana.org
     License: GNU License 2020
 
-    This section is proper to designers, anything you change here, will have some kind of effect
-    into your html.
-
-    This css has preffered classes and id.
-    The changes that u make in this document is under your responsability.
+    Esta sección es única para el diseñador de estilos de la web.
+    Cualquier cambio que realices en este fichero esta bajo tu responsabilidad.
 */
 
 
 /*
-    This is the preffered navigation bar class.
-    You can change this default parametres or make yourself new one.
+    Son las características css estandar de la barra de navegación.
 */
 .navbar{
     list-style-type: none;

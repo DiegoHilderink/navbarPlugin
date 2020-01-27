@@ -3,22 +3,26 @@
 // License: GNU License 202
 
 
-//To make a good use of these plugin, you have do design an associative array
-//which contains the attributes of the elemnts.
+//Para hacer un buen uso del plugin, deberás crear un array asociativo que contenga
+//los atributos de los elementos. Tambíen puedes añadir atributos css, pero eso es
+//cosa del diseñador.
 
-//In case you want to set the navbar up, you'll desing an array wich conteins
-//his options an the plugin will make the rest.
+//La creación de  la barra de navegación es una configuración distinta.
+//Deberás diseñar un array asociativo como los del ejemplo, que contenga las opciones
+//de dicho menu. En caso de no pasar ninguna configuración al método, se insertará
+//un menu predefinido.
 
-//You can add elements with 'addElem' or just kill it with 'killElem'
-//Here i'll set a few examples of how you need to desing your code.
+//Puedes añadir o eliminar elementos aparte con addElem o killElem
 $(window).on('load', () => {
-    
-    //Examples
+    //PON TU CÓDIGO AQUI....
+
+    //Ejemplos
     var conf = {
         'mark': 'button'
     ,    'id' : 'btn'
     , 'class' : 'primary'
-    ,  'text' : 'Boton de Prueba'}
+    ,  'text' : 'Boton de Prueba'
+    }
 
     var elem = {'id'   : 'btn'}
     var nav  = {'op1'  : 'Menu'
@@ -42,10 +46,11 @@ $(window).on('load', () => {
     // $('body').neptune('killElem', conf)
     // $('body').neptune('killElem', 'btn')
 
-    //Right now in this version you cannot set events of hidding on sepparate elements
+    //Por el momento no es posible ocultar elementos mediante el método addHiden
+    //Solo los menús
 
     //Navbar
-    $('body').neptune('addNav', 'body')
+    $().neptune('addNav', 'body')
     $('body').neptune('addNav', '#op1', subMenu1)
     $('body').neptune('addNav', '#op2', subMenu2)
     $('body').neptune('addHiden', '#op1')

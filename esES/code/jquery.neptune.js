@@ -2,7 +2,7 @@
 // @e-mail: diego.hilderink@iesdonana.org
 // License: GNU License 2020
 
-//Error constants
+//Constantes de error
 const errors = {
     'method': "That method is not supported",
     'config': "The configuration is wrong or missing",
@@ -13,7 +13,7 @@ const errors = {
     'type'  : "That kind of element is not defined."
 }
 
-//Prefer configuration for simple navbars
+//Array de configuración simple para un menu
 const prefNav = {
     'op1': 'Menu',
     'op2': 'Contactos',
@@ -21,7 +21,8 @@ const prefNav = {
     'op4': 'Ayuda'
 }
 
-//Methods constants. You can call this methos via $('something').neptune.('method',...)
+//Constantes de metodos.
+//Puedes llamarlos mediante el métoddo $('body').neptune('metodo', 'padre', configuracion)
 const methods = {
     addElem: (father, config) => {
         if (checkFather(father)) {
@@ -93,7 +94,7 @@ const methods = {
             :   $(son).show(1500) && aux.attr('show', false)
         })
 
-        //These are a few option that might be implemented in a future.
+        //Esto son modificaciones que serán implementadas en un posible futuro
         // $(son).hide()
         // aux.mouseenter(() => {
         //     $(son).hide(1500)
@@ -117,13 +118,13 @@ $.fn.neptune = function (method) {
 };
 
 
-//This are auxiliar methods that you shouldn't care about.
-//I suggest you strongly to not change anything from here.
+//A partir de aquí solo hay funciones auxiliares de los  que no has de prestar atención.
+//Si modificas algo de aqui está bajo tu responsabilidad.
 function lecturaConf(config) {
     aux = $('<' + config['mark'] + '>')
 
-    isIn('css', config) ? aux.css(config['css']) : errorExit('omit')
     isIn('attr', config) ? aux.attr(config['attr']) : errorExit('omit')
+    isIn('css', config) ? aux.css(config['css']) : errorExit('omit')
     isIn('id', config) ? aux.attr('id', config['id']) : errorExit('omit')
     isIn('class', config) ? aux.addClass(config['class']) : errorExit('omit')
     isIn('text', config) ? aux.text(config['text']) : errorExit('omit')
