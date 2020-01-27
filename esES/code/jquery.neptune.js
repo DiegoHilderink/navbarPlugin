@@ -122,6 +122,7 @@ $.fn.neptune = function (method) {
 function lecturaConf(config) {
     aux = $('<' + config['mark'] + '>')
 
+    isIn('css', config) ? aux.css(config['css']) : errorExit('omit')
     isIn('attr', config) ? aux.attr(config['attr']) : errorExit('omit')
     isIn('id', config) ? aux.attr('id', config['id']) : errorExit('omit')
     isIn('class', config) ? aux.addClass(config['class']) : errorExit('omit')
