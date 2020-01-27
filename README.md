@@ -126,10 +126,15 @@ var nav  = {
 #### **Lista de métodos:**
 
 <p>
+   
 * 'addElem' : Permite según la configuración que le pases un elemento bajo un padre. 
+
 * 'killElem' : Este método permite pasarle una configuración completa para eliminar un  objeto lo más concreto posible, o si quieres una cadena, ya sea un id, una etiqueta o una clase.
+
 * 'addNav' : Genera un menu de navegación según la configuración que se le dé. En caso de que no se le pase configuración alguna, se cargará una configuración predefinida.
+
 * 'addHiden' : Confiere a la BARRA DE NAVEGACIÓN el evento de ocultación mediante hover.
+
 </p>
 
 ### Ejemplo de Código:
