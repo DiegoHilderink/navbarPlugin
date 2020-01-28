@@ -7,16 +7,19 @@
 ###### **WARNING**
 
 <p>
-   Any change that you make in the original code, it'll be your responsability. The errors have already been implemented, so you can code without any worries.
+   Any possible change on the original code, is on you. Errors have already been implemented, so you can code without any worries.
 
-   Beforehand, I need you to understand that the objetive of this plugin is to generate dynamically a new navbar. The code also allows you to use other funcionalities like adding or deleting any specific elements in the html document. 
+   I need you to understand beforehand, that the use of this plugin is to dynamically generate a new navbar.
+   
+   The code also allows you the use of any other funcionality, like adding or deleting any specific element in the html document. 
 </p>
 
 #### **Starting:**
 
-The callable is made by the specific line code:
+The callable follows the this rule:
 
     $('body').neptune.('method', 'father', conf);
+
 * ###### 'method': Method that you want to use.
 * ###### 'father': The father of the element. It has to be an id, a class or a mark.
 * ###### 'conf': The conf of the element.
@@ -24,7 +27,9 @@ The callable is made by the specific line code:
 #### **Elements:**
 
 <p>
-    As I said before the 'conf' parameter, contains the configuration of the elements. It's an assossciative array that has keys, rules that you'll need to have in mind at the time you when you design a new element. Elements are treated like objects with attributes.
+    As it has been said before, the 'conf' parameter contains the configuration of the elements.
+    
+    It's an associative array with it's own specific keys.These keys you'll need to keep in mind while you design new elements. These elements are treated like objects with attributes.
 </p>
 
 ###### Examples:
@@ -51,11 +56,11 @@ var nav  = {
 
 <p>
    
-* 'addElem' : Create an element bellow the father with the configuration that you designed. 
+* 'addElem' : Creates an element below the 'father' with the 'conf' that you design. 
    
-* 'killElem' : Delete an element that you want. It might be a 'conf', an id, a class or even a mark.
+* 'killElem' : Deletes an element. It might be a 'conf', an id, a class or even a mark.
 
-* 'addNav' : Creates a navbar with the options provide. If the 'conf' is null, it'll charge a prefferred menu.
+* 'addNav' : Creates a navbar with the provided options. If the 'conf' is null, it charges a prefferred menu.
 
 * 'addHiden' : Allows a navbar to be hidden or shown.
 
