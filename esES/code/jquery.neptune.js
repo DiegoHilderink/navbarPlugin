@@ -4,13 +4,24 @@
 
 //Constantes de error
 const errors = {
-    'method': "That method is not supported",
-    'config': "The configuration is wrong or missing",
-    'error' : "That error is not supported",
-    'exists': "That element doesn't exists",
-    'omit'  : "Omiting attribute",
-    'father': "Father element doesn't exists in the document",
-    'type'  : "That kind of element is not defined."
+    'method'  : "That method is not supported",
+    'config'  : "The configuration is wrong or missing",
+    'exists'  : "That element doesn't exists",
+    'father'  : "Father element doesn't exists in the document",
+    'paramNum': "The number of arguments are wrong",
+    'error'   : "That error is not supported",
+}
+
+//Constantes de aviso
+const warnings = {
+    'type'    : "That kind of element is not defined.",
+    'omit'    : "Omiting attribute",
+}
+
+
+//TODO this
+const types = {
+    // 'id' :
 }
 
 //Array de configuración simple para un menu
@@ -25,6 +36,12 @@ const prefNav = {
 //Puedes llamarlos mediante el métoddo $('body').neptune('metodo', 'padre', configuracion)
 const methods = {
     addElem: (father, config) => {
+
+        if (checkArguments(father, config, 3)){
+            errorExit('paramNum')
+            return
+        }
+
         if (checkFather(father)) {
             errorExit('father')
             return
@@ -35,15 +52,24 @@ const methods = {
         config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
     },
     killElem: (elem) => {
+        if (checkArguments(elem, 2)){
+            errorExit('paramNum')
+            return
+        }
+
         if(typeof(elem) === 'string'){ 
             if(elem[0] === '#'){
                 remvElem('#' + elem)
             } else if (elem[0] === '.'){
                 remvElem('.' + elem)
-            } else{
+            } else if (!checkFather(elem)){
+                remvElem(elem)
+            }else{
                 errorExit('config')
             }
-        } else {            
+        } else {
+            //errorExit('type')     
+            
             if ('id' in elem) {
                 remvElem('#' + elem['id'])
             } else if ('class' in elem) {
@@ -54,6 +80,11 @@ const methods = {
         }
     },
     addNav: (father, config) => {
+        if (checkArguments(father, config, 3)){
+            errorExit('paramNum')
+            return
+        }
+
         if (checkFather(father)) {
             errorExit('father')
             return
@@ -67,7 +98,7 @@ const methods = {
             ).addClass('navDiv').appendTo($(father));
 
             genList(config, '.navbar', '');
-       } else {
+        } else {
 
             var id = 'subMenu'+father.substr(1)+'Son'
             $('<ul>').addClass('subMenu').attr({id: id})
@@ -78,6 +109,11 @@ const methods = {
        }
     },
     addHiden: (father) =>{
+        if (checkArguments(father, 2)){
+            errorExit('paramNum')
+            return
+        }
+
         if (checkFather(father)) {
             errorExit('father')
             return
@@ -123,11 +159,11 @@ $.fn.neptune = function (method) {
 function lecturaConf(config) {
     aux = $('<' + config['mark'] + '>')
 
-    isIn('attr', config) ? aux.attr(config['attr']) : errorExit('omit')
-    isIn('css', config) ? aux.css(config['css']) : errorExit('omit')
-    isIn('id', config) ? aux.attr('id', config['id']) : errorExit('omit')
-    isIn('class', config) ? aux.addClass(config['class']) : errorExit('omit')
-    isIn('text', config) ? aux.text(config['text']) : errorExit('omit')
+    isIn('attr', config) ? aux.attr(config['attr']) : wranExit('omit')
+    isIn('css', config) ? aux.css(config['css']) : wranExit('omit')
+    isIn('id', config) ? aux.attr('id', config['id']) : wranExit('omit')
+    isIn('class', config) ? aux.addClass(config['class']) : wranExit('omit')
+    isIn('text', config) ? aux.text(config['text']) : wranExit('omit')
 
     return aux
 }
@@ -142,6 +178,32 @@ function genList(config, father, id){
         });
 }
 
+//Solve This 
+function checkThis(father){
+    if(typeof(father) === 'string'){ 
+        if(father[0] === '#'){
+            remvElem('#' + father)
+        } else if (elem[0] === '.'){
+            remvElem('.' + elem)
+        } else if (!checkFather(elem)){
+            remvElem(elem)
+        }else{
+            errorExit('config')
+        }
+    } else {
+        errorExit('type')     
+        
+        //Implementar
+        // if ('id' in elem) {
+        //     remvElem('#' + elem['id'])
+        // } else if ('class' in elem) {
+        //     remvElem('.' + elem['class'])
+        // } else {
+        //     errorExit('config')
+        // }
+    }
+}
+
 function isIn(k, config) {
     return k in config;
 }
@@ -150,12 +212,25 @@ function remvElem(mark) {
     $(mark).length ? $(mark).remove() : errorExit('exists')
 }
 
+function checkArguments(...names){
+    if(typeof(names[2]) === 'number'){
+        return !(names[2] == arguments.length)
+    }else{
+        wranExit('type')
+    }
+}
+
 function checkFather(father) {
     return !$(father).length 
 }
 
 function errorExit(error) {
     var aux = errors[error];
+    aux ? console.error(aux) : errorExit('error');
+}
+
+function wranExit(warn){
+    var aux = warnings[warn];
     aux ? console.warn(aux) : errorExit('error');
 }
 

@@ -42,19 +42,23 @@ $(window).on('load', () => {
     }
 
     //btns
-    // $('body').neptune('addElem', 'body', conf)
-    // $('body').neptune('killElem', conf)
+    $('body').neptune('addElem', 'body', conf)
+    $('body').neptune('killElem', conf)
+    // $('body').neptune('killElem', conf, 'asdkjflkj')
     // $('body').neptune('killElem', 'btn')
 
     //Por el momento no es posible ocultar elementos mediante el método addHiden
     //Solo los menús
 
     //Navbar
-    $().neptune('addNav', 'body')
-    $('body').neptune('addNav', '#op1', subMenu1)
-    $('body').neptune('addNav', '#op2', subMenu2)
-    $('body').neptune('addHiden', '#op1')
-    $('body').neptune('addHiden', '#op2')
+    // $().neptune('addNav', 'body')
+    // $().neptune('addNav', '#op1', subMenu1)
+    // $().neptune('addNav', '#op2', subMenu2)
+    // $().neptune('addHiden', '#op1')
+    // $().neptune('addHiden', '#op2')
+
+    // $().neptune('killElem', 'ul')
+    // $().neptune('adsñlfkasñlkasfkñl', 'ul')
     
     //Kill navbar
     //$('body').neptune('killElem', navba, 'body')
