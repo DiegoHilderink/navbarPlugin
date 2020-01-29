@@ -35,27 +35,31 @@ const prefNav = {
 //Constantes de metodos.
 //Puedes llamarlos mediante el métoddo $('body').neptune('metodo', 'padre', configuracion)
 const methods = {
-    addElem: (father, config) => {
+    addElem: (config) => {
 
-        if (checkArguments(father, config, 3)){
-            errorExit('paramNum')
-            return
-        }
-
-        if (checkFather(father)) {
+        // if (checkArguments(father, config, 3)){
+        //     errorExit('paramNum')
+        //     return
+        // }
+        prueba($(this).attr('id'))
+        prueba(this)
+        if (checkThis($(this))) {
             errorExit('father')
             return
         }
+
+        var father = checkFather($(this))
+        prueba(father)
 
         $.isEmptyObject(config) ? errorExit('config') : config
 
         config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
     },
     killElem: (elem) => {
-        if (checkArguments(elem, 2)){
-            errorExit('paramNum')
-            return
-        }
+        // if (checkArguments(elem, 2)){
+        //     errorExit('paramNum')
+        //     return
+        // }
 
         if(typeof(elem) === 'string'){ 
             if(elem[0] === '#'){
@@ -80,10 +84,10 @@ const methods = {
         }
     },
     addNav: (father, config) => {
-        if (checkArguments(father, config, 3)){
-            errorExit('paramNum')
-            return
-        }
+        // if (checkArguments(father, config, 3)){
+        //     errorExit('paramNum')
+        //     return
+        // }
 
         if (checkFather(father)) {
             errorExit('father')
@@ -109,10 +113,10 @@ const methods = {
        }
     },
     addHiden: (father) =>{
-        if (checkArguments(father, 2)){
-            errorExit('paramNum')
-            return
-        }
+        // if (checkArguments(father, 2)){
+        //     errorExit('paramNum')
+        //     return
+        // }
 
         if (checkFather(father)) {
             errorExit('father')
@@ -138,10 +142,17 @@ const methods = {
         // aux.mouseleave(() =>{
         //     $(son).show(1500) && aux.attr('show', false)
         // })
+    },
+    pruebaPlug: (config) => {
+        prueba($(this))
+        if (checkThis($(this))) {
+                errorExit('father')
+                return
+            }
     }
 }
 
-$.fn.neptune = function (method) {
+jQuery.fn.neptune = function (method) {
     if (methods[method]) {
         return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method) {
@@ -150,9 +161,8 @@ $.fn.neptune = function (method) {
         errorExit('method')
     }
 
-    return $this
+    return this;
 };
-
 
 //A partir de aquí solo hay funciones auxiliares de los  que no has de prestar atención.
 //Si modificas algo de aqui está bajo tu responsabilidad.
@@ -179,29 +189,22 @@ function genList(config, father, id){
 }
 
 //Solve This 
-function checkThis(father){
-    if(typeof(father) === 'string'){ 
-        if(father[0] === '#'){
-            remvElem('#' + father)
-        } else if (elem[0] === '.'){
-            remvElem('.' + elem)
-        } else if (!checkFather(elem)){
-            remvElem(elem)
-        }else{
-            errorExit('config')
-        }
-    } else {
-        errorExit('type')     
-        
-        //Implementar
-        // if ('id' in elem) {
-        //     remvElem('#' + elem['id'])
-        // } else if ('class' in elem) {
-        //     remvElem('.' + elem['class'])
-        // } else {
-        //     errorExit('config')
-        // }
+function checkThis(elem){
+    if(checkFather(elem.attr('id'))){
+        return elem.attr('id')
+    } else if (checkFather(elem.attr('class'))){
+        return elem.attr('class')
+    } else if (checkFather(elem.prev().prop('tagName'))){
+        //Esto tiene que ser una etiqueta
+        return elem.prev().prop('tagName')
+    }else{
+        return false
     }
+}
+
+function checkFather(father) {
+    prueba(father)
+    return !$(father).length 
 }
 
 function isIn(k, config) {
@@ -212,17 +215,14 @@ function remvElem(mark) {
     $(mark).length ? $(mark).remove() : errorExit('exists')
 }
 
-function checkArguments(...names){
-    if(typeof(names[2]) === 'number'){
-        return !(names[2] == arguments.length)
-    }else{
-        wranExit('type')
-    }
-}
+// function checkArguments(...names){
+//     if(typeof(names[2]) === 'number'){
+//         return !(names[2] == arguments.length)
+//     }else{
+//         wranExit('type')
+//     }
+// }
 
-function checkFather(father) {
-    return !$(father).length 
-}
 
 function errorExit(error) {
     var aux = errors[error];

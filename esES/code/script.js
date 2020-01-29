@@ -42,8 +42,7 @@ $(window).on('load', () => {
     }
 
     //btns
-    $('body').neptune('addElem', 'body', conf)
-    $('body').neptune('killElem', conf)
+    $('#body').neptune('pruebaPlug', conf)
     // $('body').neptune('killElem', conf, 'asdkjflkj')
     // $('body').neptune('killElem', 'btn')
 
