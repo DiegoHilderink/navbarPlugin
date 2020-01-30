@@ -25,24 +25,26 @@ $(window).on('load', () => {
     }
 
     var elem = {'id'   : 'btn'}
-    var nav  = {'op1'  : 'Menu'
-              , 'op2'  : 'Contactos'
-              , 'op3'  : 'Contactos'}
-    
-    var navba = {'class' : 'navbar' }
-    var subMenu1 = {
-        'op1': 'Tus gustos',
-        'op2': 'Calendario',
-        'op3': 'Tu academia',
+
+    var navBig = {
+            'Menu' : {
+                'id'     : 'op1',
+                'Productos' : {'id': 'subOp1'},
+                'Categorias' : {'id': 'subOp2'},
+            },
+            'Nosotros' : {
+                'id'     : 'op2',
+                'Departamentos' : {'id': 'subOp3'}, 
+            },
+            'Ayuda' : {
+                'id': 'op3'
+            }
     }
 
-    var subMenu2 = {
-        'op1': 'Compra',
-        'op2': 'Venta',
-    }
+    var hiddens = {1: '#op1', 2: '#op2',}
 
     //btns
-    $('#body').neptune('pruebaPlug', conf)
+    
     // $('body').neptune('killElem', conf, 'asdkjflkj')
     // $('body').neptune('killElem', 'btn')
 
@@ -50,11 +52,8 @@ $(window).on('load', () => {
     //Solo los menús
 
     //Navbar
-    // $().neptune('addNav', 'body')
-    // $().neptune('addNav', '#op1', subMenu1)
-    // $().neptune('addNav', '#op2', subMenu2)
-    // $().neptune('addHiden', '#op1')
-    // $().neptune('addHiden', '#op2')
+    $('body').neptune('addNav', 'body', navBig)
+    $('body').neptune('addHiden', hiddens)
 
     // $().neptune('killElem', 'ul')
     // $().neptune('adsñlfkasñlkasfkñl', 'ul')

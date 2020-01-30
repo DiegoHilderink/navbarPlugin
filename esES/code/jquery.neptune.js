@@ -18,12 +18,6 @@ const warnings = {
     'omit'    : "Omiting attribute",
 }
 
-
-//TODO this
-const types = {
-    // 'id' :
-}
-
 //Array de configuración simple para un menu
 const prefNav = {
     'op1': 'Menu',
@@ -35,24 +29,21 @@ const prefNav = {
 //Constantes de metodos.
 //Puedes llamarlos mediante el métoddo $('body').neptune('metodo', 'padre', configuracion)
 const methods = {
-    addElem: (config) => {
+    addElem: (father, config) => {
 
         // if (checkArguments(father, config, 3)){
         //     errorExit('paramNum')
         //     return
+        // // }
+        // prueba($(this).attr('id'))
+        // prueba(this)
+        // if (checkThis($(this))) {
+        //     errorExit('father')
+        //     return
         // }
-        prueba($(this).attr('id'))
-        prueba(this)
-        if (checkThis($(this))) {
-            errorExit('father')
-            return
-        }
 
-        var father = checkFather($(this))
-        prueba(father)
-
-        $.isEmptyObject(config) ? errorExit('config') : config
-
+        // var father = checkFather($(this))
+        // $.isEmptyObject(config) ? errorExit('config') : config
         config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
     },
     killElem: (elem) => {
@@ -101,15 +92,14 @@ const methods = {
                 $('<ul>').addClass('navbar')
             ).addClass('navDiv').appendTo($(father));
 
-            genList(config, '.navbar', '');
+            genList(config, '.navbar');
         } else {
-
-            var id = 'subMenu'+father.substr(1)+'Son'
-            $('<ul>').addClass('subMenu').attr({id: id})
-            .appendTo($(father))
-
+            var id = father.substr(1)+'Son'
+            var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
+            prueba(father)
+            $('body').neptune('addElem', father, aux)
             id = '#'+id
-            genList(config, id, 'subMenu')
+            genList(config, id)
        }
     },
     addHiden: (father) =>{
@@ -118,41 +108,20 @@ const methods = {
         //     return
         // }
 
-        if (checkFather(father)) {
-            errorExit('father')
-            return
+        if (typeof(father)==='string'){
+            checkFather(father) ? errorExit('father') : hidden(father)
+        } else if (typeof(father) === 'object'){
+            $.each(father ,(k, v) =>{
+                $('body').neptune('addHiden', v)
+            })
         }
-
-        var aux = $(father)
-        var son = father+' #subMenu'+aux.attr('id')+'Son' 
-        
-        aux.attr('show', false)
-        $(son).hide() && aux.attr('show', true)
-        aux.mouseenter(() => {
-            aux.attr('show') === 'false' ?  
-                $(son).hide(1500) && aux.attr('show', true)
-            :   $(son).show(1500) && aux.attr('show', false)
-        })
-
-        //Esto son modificaciones que serán implementadas en un posible futuro
-        // $(son).hide()
-        // aux.mouseenter(() => {
-        //     $(son).hide(1500)
-        // })
-        // aux.mouseleave(() =>{
-        //     $(son).show(1500) && aux.attr('show', false)
-        // })
     },
     pruebaPlug: (config) => {
-        prueba($(this))
-        if (checkThis($(this))) {
-                errorExit('father')
-                return
-            }
+        //Pruebas de codigo
     }
 }
 
-jQuery.fn.neptune = function (method) {
+$.fn.neptune = function (method) {
     if (methods[method]) {
         return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method) {
@@ -178,17 +147,44 @@ function lecturaConf(config) {
     return aux
 }
 
-function genList(config, father, id){
+function genList(config, father){
     $.each(config, (k, v) => {
-        $('<li>')
-            .attr('id', id+k).append($('<a>').text(v))
-            .addClass('liNav')
-            .appendTo($(father));
-
-        });
+        if (k === 'id'){
+            //Nothing
+        }else{
+          var opc = {'mark': 'li', 'id': v['id'], 'class': 'liNav'}
+          var line = {'mark': 'a', 'text': k}
+          $('body').neptune('addElem', father, opc)
+          $('body').neptune('addElem', '#'+v['id'], line)
+          $('body').neptune('addNav', '#'+v['id'], v)
+        }
+    });
 }
 
-//Solve This 
+function hidden(father){
+    var aux = $(father)
+    var son = father+' '+father+'Son' 
+    
+    aux.attr('show', false)
+    $(son).hide() && aux.attr('show', true)
+    aux.mouseenter(() => {
+        aux.attr('show') === 'false' ?  
+            $(son).hide(1500) && aux.attr('show', true)
+        :   $(son).show(1500) && aux.attr('show', false)
+    })
+}
+
+//Check this
+function checkOpened(aux, son){
+    aux = 'li[show]:not('+aux+')'
+    prueba(aux) 
+    $(aux).attr('show', false);
+    $(son).hide(1500);
+}
+
+//Solve This(?) 
+//Comprobar el padre que recibe, si es un id, si es una clase o etiqueta.
+// Si es id y existe, negar.
 function checkThis(elem){
     if(checkFather(elem.attr('id'))){
         return elem.attr('id')
