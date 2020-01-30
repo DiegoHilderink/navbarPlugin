@@ -19,11 +19,19 @@ const warnings = {
 }
 
 //Array de configuración simple para un menu
-const prefNav = {
-    'op1': 'Menu',
-    'op2': 'Contactos',
-    'op3': 'Productos',
-    'op4': 'Ayuda'
+var prefNav = {
+    'Menu' : {
+        'id'     : 'op1',
+        'Productos' : {'id': 'subOp1'},
+        'Categorias' : {'id': 'subOp2'},
+    },
+    'Nosotros' : {
+        'id'     : 'op2',
+        'Departamentos' : {'id': 'subOp3'}, 
+    },
+    'Ayuda' : {
+        'id': 'op3'
+    }
 }
 
 //Constantes de metodos.
@@ -31,26 +39,18 @@ const prefNav = {
 const methods = {
     addElem: (father, config) => {
 
-        // if (checkArguments(father, config, 3)){
-        //     errorExit('paramNum')
-        //     return
-        // // }
-        // prueba($(this).attr('id'))
-        // prueba(this)
-        // if (checkThis($(this))) {
-        //     errorExit('father')
-        //     return
-        // }
-
-        // var father = checkFather($(this))
-        // $.isEmptyObject(config) ? errorExit('config') : config
+        if (!checkArguments(father, config, 3)){
+            errorExit('paramNum')
+            return
+        }
+        
         config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
     },
     killElem: (elem) => {
-        // if (checkArguments(elem, 2)){
-        //     errorExit('paramNum')
-        //     return
-        // }
+        if (!checkArguments(elem, 2)){
+            errorExit('paramNum')
+            return
+        }
 
         if(typeof(elem) === 'string'){ 
             if(elem[0] === '#'){
@@ -63,8 +63,6 @@ const methods = {
                 errorExit('config')
             }
         } else {
-            //errorExit('type')     
-            
             if ('id' in elem) {
                 remvElem('#' + elem['id'])
             } else if ('class' in elem) {
@@ -75,10 +73,10 @@ const methods = {
         }
     },
     addNav: (father, config) => {
-        // if (checkArguments(father, config, 3)){
-        //     errorExit('paramNum')
-        //     return
-        // }
+        if (!checkArguments(father, config, 3)){
+            errorExit('paramNum')
+            return
+        }
 
         if (checkFather(father)) {
             errorExit('father')
@@ -96,17 +94,16 @@ const methods = {
         } else {
             var id = father.substr(1)+'Son'
             var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
-            prueba(father)
             $('body').neptune('addElem', father, aux)
             id = '#'+id
             genList(config, id)
        }
     },
     addHiden: (father) =>{
-        // if (checkArguments(father, 2)){
-        //     errorExit('paramNum')
-        //     return
-        // }
+        if (!checkArguments(father, 2)){
+            errorExit('paramNum')
+            return
+        }
 
         if (typeof(father)==='string'){
             checkFather(father) ? errorExit('father') : hidden(father)
@@ -116,8 +113,9 @@ const methods = {
             })
         }
     },
-    pruebaPlug: (config) => {
+    pruebaPlug: (...config) => {
         //Pruebas de codigo
+        prueba($(this))
     }
 }
 
@@ -199,7 +197,6 @@ function checkThis(elem){
 }
 
 function checkFather(father) {
-    prueba(father)
     return !$(father).length 
 }
 
@@ -211,14 +208,16 @@ function remvElem(mark) {
     $(mark).length ? $(mark).remove() : errorExit('exists')
 }
 
-// function checkArguments(...names){
-//     if(typeof(names[2]) === 'number'){
-//         return !(names[2] == arguments.length)
-//     }else{
-//         wranExit('type')
-//     }
-// }
-
+function checkArguments(...names){
+    if(typeof(names[1]) === 'number' 
+    || typeof(names[2]) === 'number' )
+    {
+        return parseInt(names[1]) == arguments.length 
+            || parseInt(names[2]) == arguments.length
+    }else{
+        wranExit('type')
+    }
+}
 
 function errorExit(error) {
     var aux = errors[error];

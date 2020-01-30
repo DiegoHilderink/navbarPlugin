@@ -18,10 +18,11 @@ $(window).on('load', () => {
 
     //Ejemplos
     var conf = {
-        'mark': 'button'
-    ,    'id' : 'btn'
-    , 'class' : 'primary'
-    ,  'text' : 'Boton de Prueba'
+            'mark': 'button'
+        ,    'id' : 'btn'
+        ,    'css': { backgroundColor : 'blue' }
+        , 'class' : 'primary'
+        ,  'text' : 'Boton de Prueba'
     }
 
     var elem = {'id'   : 'btn'}
@@ -41,26 +42,23 @@ $(window).on('load', () => {
             }
     }
 
-    var hiddens = {1: '#op1', 2: '#op2',}
+    var hiddens = {1: '#op1', 2: '#op2', 3: '#op3'}
 
     //btns
-    
+    // $().neptune('addElem', 'body', conf)
     // $('body').neptune('killElem', conf, 'asdkjflkj')
     // $('body').neptune('killElem', 'btn')
 
-    //Por el momento no es posible ocultar elementos mediante el método addHiden
-    //Solo los menús
+    // Por el momento no es posible ocultar elementos mediante el método addHiden
+    // Solo los menús
+    // Navbar
+    // $('body').neptune('addNav', 'body', navBig)
+    // $('body').neptune('addHiden', hiddens)
 
-    //Navbar
-    $('body').neptune('addNav', 'body', navBig)
-    $('body').neptune('addHiden', hiddens)
-
-    // $().neptune('killElem', 'ul')
-    // $().neptune('adsñlfkasñlkasfkñl', 'ul')
     
-    //Kill navbar
-    //$('body').neptune('killElem', navba, 'body')
-    //$('body').neptune('killElem', elem)
+    // Kill navbar
+    // $('body').neptune('killElem', navba, 'body')
+    // $('body').neptune('killElem', elem)
 });
 
 
