@@ -2,39 +2,7 @@
 // @e-mail: diego.hilderink@iesdonana.org
 // License: GNU License 2020
 
-//Constantes de error
-const errors = {
-    'method'  : "That method is not supported",
-    'config'  : "The configuration is wrong or missing",
-    'exists'  : "That element doesn't exists",
-    'father'  : "Father element doesn't exists in the document",
-    'paramNum': "The number of arguments are wrong",
-    'error'   : "That error is not supported",
-}
-
-//Constantes de aviso
-const warnings = {
-    'type'    : "That kind of element is not defined.",
-    'omit'    : "Omiting attribute",
-}
-
-//Array de configuración simple para un menu
-var prefNav = {
-    'Menu' : {
-        'id'     : 'op1',
-        'Productos' : {'id': 'subOp1'},
-        'Categorias' : {'id': 'subOp2'},
-    },
-    'Nosotros' : {
-        'id'     : 'op2',
-        'Departamentos' : {'id': 'subOp3'}, 
-    },
-    'Ayuda' : {
-        'id': 'op3'
-    }
-}
-
-//Constantes de metodos.
+//Mehods.
 //Puedes llamarlos mediante el métoddo $('body').neptune('metodo', 'padre', configuracion)
 const methods = {
     addElem: (father, config) => {
@@ -43,8 +11,44 @@ const methods = {
             errorExit('paramNum')
             return
         }
-        
-        config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
+
+        if (typeof(config) === 'string'){
+            var pref = getPref(config)
+            pref ? 
+            $('body').neptune('addElem', father, pref):
+            errorExit('const')
+        } else {
+            config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
+        }
+    },
+    addNav: (father, config) => {
+        if (!checkArguments(father, config, 3)){
+            errorExit('paramNum')
+            return
+        }
+
+        if (checkFather(father)) {
+            errorExit('father')
+            return
+        }
+
+        $.isEmptyObject(config) ? config = getPref('prefNav') : config
+
+        if ( !config ){ errorExit('const') }
+
+        if (father === 'body'){
+            $('<div>').append(
+                $('<ul>').addClass('navbar')
+            ).addClass('navDiv').appendTo($(father));
+
+            genList(config, '.navbar');
+        } else {
+            var id = father.substr(1)+'Son'
+            var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
+            $('body').neptune('addElem', father, aux)
+            id = '#'+id
+            genList(config, id)
+       }
     },
     killElem: (elem) => {
         if (!checkArguments(elem, 2)){
@@ -71,33 +75,6 @@ const methods = {
                 errorExit('config')
             }
         }
-    },
-    addNav: (father, config) => {
-        if (!checkArguments(father, config, 3)){
-            errorExit('paramNum')
-            return
-        }
-
-        if (checkFather(father)) {
-            errorExit('father')
-            return
-        }
-
-        $.isEmptyObject(config) ? config = prefNav : config
-
-        if (father === 'body'){
-            $('<div>').append(
-                $('<ul>').addClass('navbar')
-            ).addClass('navDiv').appendTo($(father));
-
-            genList(config, '.navbar');
-        } else {
-            var id = father.substr(1)+'Son'
-            var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
-            $('body').neptune('addElem', father, aux)
-            id = '#'+id
-            genList(config, id)
-       }
     },
     addHiden: (father) =>{
         if (!checkArguments(father, 2)){
@@ -170,6 +147,14 @@ function hidden(father){
             $(son).hide(1500) && aux.attr('show', true)
         :   $(son).show(1500) && aux.attr('show', false)
     })
+}
+
+function getPref(k){
+    if (pref[k] !== undefined && pref[k] !== null) {
+        return pref[k];
+    } else { 
+        return false;
+    } 
 }
 
 //Check this
