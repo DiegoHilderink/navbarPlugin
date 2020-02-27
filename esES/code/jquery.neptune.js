@@ -1,4 +1,4 @@
-// @author: Diego Hilderink Dominguez
+ // @author: Diego Hilderink Dominguez
 // @e-mail: diego.hilderink@iesdonana.org
 // License: GNU License 2020
 
@@ -32,9 +32,11 @@ const methods = {
             return
         }
 
-        $.isEmptyObject(config) ? config = getPref('prefNav') : config
-
-        if ( !config ){ errorExit('const') }
+        if (typeof(config) === 'string'){
+            var config = getPref(config)
+            prueba(config)
+            config ? $('body').neptune('addNav', father, config): errorExit('const')
+        }
 
         if (father === 'body'){
             $('<div>').append(

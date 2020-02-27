@@ -42,11 +42,6 @@ $(window).on('load', () => {
             }
     }
 
-
-    
-
-
-
     //btns
     // $().neptune('addElem', 'body', 'prefBtn')
     // $('body').neptune('killElem', conf, 'asdkjflkj')
@@ -56,7 +51,7 @@ $(window).on('load', () => {
     // Solo los menús
     // Navbar
     $('body').neptune('addNav', 'body', 'prefNav')
-    //  $('body').neptune('addHiden', hiddens)
+    $('body').neptune('addHiden', hiddens)
     //  $('body').neptune('addElem', '.navDiv', conf)
     
     // Kill navbar
