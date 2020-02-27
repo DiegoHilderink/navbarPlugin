@@ -11,13 +11,21 @@ const errors = {
     'paramNum': "The number of arguments are wrong",
     'error'   : "That error is not supported",
     'const'   : "Constante no definida",
-}
+    'const'   : "Constante no definida",
+    ''        : ""
+}   
 
 //Constantes de aviso
 const warnings = {
     'type'    : "That kind of element is not defined.",
     'omit'    : "Omiting attribute",
 }
+
+var count = 0;
+
+var salida = {
+
+};
 
 const prefBtn = {
     'mark': 'button'
@@ -54,7 +62,7 @@ const prefNav = {
 const hiddens = {1: '#op1', 2: '#op2', 3: '#op3'}
 
 //Constante de elementos
-var pref = {
+const pref = {
     'prefBtn' : prefBtn,
     'prefNav' : prefNav,
 }

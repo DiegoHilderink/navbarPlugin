@@ -33,24 +33,23 @@ const methods = {
         }
 
         if (typeof(config) === 'string'){
-            var config = getPref(config)
-            prueba(config)
+            config = getPref(config)
             config ? $('body').neptune('addNav', father, config): errorExit('const')
+        } else  {
+            if (father === 'body'){
+                $('<div>').append(
+                    $('<ul>').addClass('navbar')
+                ).addClass('navDiv').appendTo($(father));
+
+                genList(config, '.navbar');
+            } else {
+                var id = father.substr(1)+'Son'
+                var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
+                $('body').neptune('addElem', father, aux)
+                id = '#'+id
+                genList(config, id)
+            }
         }
-
-        if (father === 'body'){
-            $('<div>').append(
-                $('<ul>').addClass('navbar')
-            ).addClass('navDiv').appendTo($(father));
-
-            genList(config, '.navbar');
-        } else {
-            var id = father.substr(1)+'Son'
-            var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
-            $('body').neptune('addElem', father, aux)
-            id = '#'+id
-            genList(config, id)
-       }
     },
     killElem: (elem) => {
         if (!checkArguments(elem, 2)){
