@@ -35,8 +35,11 @@
     list-style-type: none;
 }
 
+.liNav ul li {
+    width: 50%;
+}
+
 .liNav ul li a{
-    display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;

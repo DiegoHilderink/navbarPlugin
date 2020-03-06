@@ -57,6 +57,8 @@ $(window).on('load', () => {
     // Kill navbar
     // $('body').neptune('killElem', navba, 'body')
     // $('body').neptune('killElem', elem)
+
+    getWarns();
 });
 
 

@@ -23,9 +23,7 @@ const warnings = {
 
 var count = 0;
 
-var salida = {
-
-};
+var salida = [];
 
 const prefBtn = {
     'mark': 'button'
@@ -66,3 +64,4 @@ const pref = {
     'prefBtn' : prefBtn,
     'prefNav' : prefNav,
 }
+
