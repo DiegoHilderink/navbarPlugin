@@ -2,6 +2,7 @@
 // @e-mail: diego.hilderink@iesdonana.org
 // License: GNU License 2020
 
+
 function checkOpened(aux, son){
     aux = 'li[show]:not('+aux+')'
     prueba(aux) 
@@ -38,13 +39,12 @@ function remvElem(mark) {
 }
 
 function checkArguments(...names){
-    if(typeof(names[1]) === 'number' 
-    || typeof(names[2]) === 'number' )
+    if(typeof(names[1]) === 'number' || typeof(names[2]) === 'number' )
     {
         return parseInt(names[1]) == arguments.length 
             || parseInt(names[2]) == arguments.length
     }else{
-        wranExit('type')
+        warnExit('type')
     }
 }
 
@@ -53,7 +53,7 @@ function errorExit(error) {
     aux ? console.log(aux) : errorExit('error');
 }
 
-function wranExit(warn){
+function warnExit(warn){
     var aux = warnings[warn];
     aux ? salida.push({type: warn , mssg: aux}) : errorExit('error');
 }
@@ -67,5 +67,3 @@ function getWarns(){
         console.log(`${v['type']}: ${v['mssg']}`)
     })
 }
-
-

@@ -30,7 +30,7 @@ $(window).on('load', () => {
     var navBig = {
             'Menu' : {
                 'id'     : 'op1',
-                'Productos' : {'id': 'subOp1'},
+                'Productos' : {'id': 'subOp1', 'Food' : {'id' : 'son'}},
                 'Categorias' : {'id': 'subOp2'},
             },
             'Nosotros' : {
@@ -50,15 +50,11 @@ $(window).on('load', () => {
     // Por el momento no es posible ocultar elementos mediante el método addHiden
     // Solo los menús
     // Navbar
-    $('body').neptune('addNav', 'body', 'prefNav')
+    $('body').neptune('addNav', 'body', navBig)
     $('body').neptune('addHiden', hiddens)
     //  $('body').neptune('addElem', '.navDiv', conf)
     
     // Kill navbar
     // $('body').neptune('killElem', navba, 'body')
     // $('body').neptune('killElem', elem)
-
-    getWarns();
 });
-
-

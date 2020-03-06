@@ -11,7 +11,6 @@ const errors = {
     'paramNum': "The number of arguments are wrong",
     'error'   : "That error is not supported",
     'const'   : "Constante no definida",
-    'const'   : "Constante no definida",
     ''        : ""
 }   
 
@@ -21,10 +20,7 @@ const warnings = {
     'omit'    : "Omiting attribute",
 }
 
-var count = 0;
-
-var salida = [];
-
+//Constante de botón
 const prefBtn = {
     'mark': 'button'
     ,    'id' : 'btn'
@@ -53,15 +49,17 @@ const prefNav = {
         'Departamentos' : {'id': 'subOp3'}, 
     },
     'Ayuda' : {
-        'id': 'op3'
+        'id'     : 'op3'
     }
 }
 
-const hiddens = {1: '#op1', 2: '#op2', 3: '#op3'}
+const hiddens = {1: '#op1', 2: '#op2', 3: '#op3', 4: '#subOp1'}
 
-//Constante de elementos
+//Constantes de elementos
 const pref = {
     'prefBtn' : prefBtn,
     'prefNav' : prefNav,
 }
 
+var count = 0;
+var salida = []; // salida de errores

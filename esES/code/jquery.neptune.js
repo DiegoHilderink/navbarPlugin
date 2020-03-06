@@ -1,4 +1,4 @@
- // @author: Diego Hilderink Dominguez
+// @author: Diego Hilderink Dominguez
 // @e-mail: diego.hilderink@iesdonana.org
 // License: GNU License 2020
 
@@ -6,7 +6,6 @@
 //Puedes llamarlos mediante el métoddo $('body').neptune('metodo', 'padre', configuracion)
 const methods = {
     addElem: (father, config) => {
-
         if (!checkArguments(father, config, 3)){
             errorExit('paramNum')
             return
@@ -14,9 +13,7 @@ const methods = {
 
         if (typeof(config) === 'string'){
             var pref = getPref(config)
-            pref ? 
-            $('body').neptune('addElem', father, pref):
-            errorExit('const')
+            pref ? $('body').neptune('addElem', father, pref): errorExit('const')
         } else {
             config['mark'] ? lecturaConf(config).appendTo($(father)) : errorExit('config');
         }
@@ -47,6 +44,7 @@ const methods = {
                 var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
                 $('body').neptune('addElem', father, aux)
                 id = '#'+id
+
                 genList(config, id)
             }
         }
@@ -83,6 +81,7 @@ const methods = {
             return
         }
 
+
         if (typeof(father)==='string'){
             checkFather(father) ? errorExit('father') : hidden(father)
         } else if (typeof(father) === 'object'){
@@ -114,11 +113,11 @@ $.fn.neptune = function (method) {
 function lecturaConf(config) {
     aux = $('<' + config['mark'] + '>')
 
-    isIn('attr', config) ? aux.attr(config['attr']) : wranExit('omit')
-    isIn('css', config) ? aux.css(config['css']) : wranExit('omit')
-    isIn('id', config) ? aux.attr('id', config['id']) : wranExit('omit')
-    isIn('class', config) ? aux.addClass(config['class']) : wranExit('omit')
-    isIn('text', config) ? aux.text(config['text']) : wranExit('omit')
+    isIn('attr', config) ? aux.attr(config['attr']) : warnExit('omit')
+    isIn('css', config) ? aux.css(config['css']) : warnExit('omit')
+    isIn('id', config) ? aux.attr('id', config['id']) : warnExit('omit')
+    isIn('class', config) ? aux.addClass(config['class']) : warnExit('omit')
+    isIn('text', config) ? aux.text(config['text']) : warnExit('omit')
 
     return aux
 }
@@ -143,7 +142,7 @@ function hidden(father){
     
     aux.attr('show', false)
     $(son).hide() && aux.attr('show', true)
-    aux.click(() => {
+    aux.hover(() => {
         aux.attr('show') === 'false' ?  
             $(son).hide(1500) && aux.attr('show', true)
         :   $(son).show(1500) && aux.attr('show', false)
@@ -151,9 +150,7 @@ function hidden(father){
 }
 
 function getPref(k){
-    if (pref[k] !== undefined && pref[k] !== null) {
-        return pref[k];
-    } else { 
-        return false;
-    } 
+    return pref[k] !== undefined && pref[k] !== null ?
+         pref[k] : false;
+    
 }
