@@ -81,9 +81,15 @@ const methods = {
             return
         }
 
-
+        // father ? $('body').neptune('addNav', father, config): errorExit('const')
+        
         if (typeof(father)==='string'){
-            checkFather(father) ? errorExit('father') : hidden(father)
+            if (getPref(father)){
+                father = getPref(father)
+                $('body').neptune('addHiden', father)
+            } else{
+                checkFather(father) ? errorExit('father') : hidden(father)
+            }
         } else if (typeof(father) === 'object'){
             $.each(father ,(k, v) =>{
                 $('body').neptune('addHiden', v)
@@ -140,12 +146,12 @@ function hidden(father){
     var aux = $(father)
     var son = father+' '+father+'Son' 
     
-    aux.attr('show', false)
-    $(son).hide() && aux.attr('show', true)
+    aux.attr('show', true)
+    $(son).hide() && aux.attr('show', false)
     aux.hover(() => {
-        aux.attr('show') === 'false' ?  
-            $(son).hide(1500) && aux.attr('show', true)
-        :   $(son).show(1500) && aux.attr('show', false)
+        aux.attr('show') === 'true' ?  
+            $(son).hide(1500) && aux.attr('show', false)
+        :   $(son).show(1500) && aux.attr('show', true)
     })
 }
 
