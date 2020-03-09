@@ -62,8 +62,15 @@ function prueba(output){
     console.log(output)
 }
 
-function getWarns(){
-    $.each(salida, (k, v) => {
-        console.log(`${v['type']}: ${v['mssg']}`)
-    })
+function getWarns(search = null){
+    if (search === null ) {
+        $.each(salida, (k, v) => {
+            console.log(`${v['type']}: ${v['mssg']}`)
+        })
+    } else {
+        $.each(salida, (k, v) => {
+            if (v['type'] === search)
+            console.log(`${v['type']}: ${v['mssg']}`)
+        })
+    }
 }

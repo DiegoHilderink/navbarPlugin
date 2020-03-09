@@ -40,7 +40,7 @@ const methods = {
 
                 genList(config, '.navbar');
             } else {
-                var id = father.substr(1)+'Son'
+                var id = 'sub' + father.substr(1)
                 var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
                 $('body').neptune('addElem', father, aux)
                 id = '#'+id
@@ -144,11 +144,13 @@ function genList(config, father){
 
 function hidden(father){
     var aux = $(father)
-    var son = father+' '+father+'Son' 
+    var son = '#sub'+ father.substr(1, 1)
     
+    prueba(son)
+
     aux.attr('show', true)
     $(son).hide() && aux.attr('show', false)
-    aux.hover(() => {
+    aux.click(() => {
         aux.attr('show') === 'true' ?  
             $(son).hide(1500) && aux.attr('show', false)
         :   $(son).show(1500) && aux.attr('show', true)
@@ -158,5 +160,4 @@ function hidden(father){
 function getPref(k){
     return pref[k] !== undefined && pref[k] !== null ?
          pref[k] : false;
-    
 }

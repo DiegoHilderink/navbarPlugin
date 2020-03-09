@@ -40,20 +40,20 @@ const prefBtn = {
 // Se le aplica el hidden despues.
 const prefNav = {
     'Menu' : {
-        'id'     : 'op1',
-        'Productos' : {'id': 'subOp1'},
-        'Categorias' : {'id': 'subOp2'},
+        'id'     : '1',
+        'Productos' : {'id': '1-1'},
+        'Categorias' : {'id': '1-2'},
     },
     'Nosotros' : {
-        'id'     : 'op2',
-        'Departamentos' : {'id': 'subOp3'}, 
+        'id'     : '2',
+        'Departamentos' : {'id': '2-1'}, 
     },
     'Ayuda' : {
-        'id'     : 'op3'
+        'id'     : '3'
     }
 }
 
-const hiddens = {1: '#op1', 2: '#op2', 3: '#op3', 4: '#subOp1'}
+const hiddens = {1: '#1', 2: '#2', 3: '#3'}
 
 //Constantes de elementos
 const pref = {

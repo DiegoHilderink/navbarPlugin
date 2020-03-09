@@ -19,7 +19,7 @@ $(window).on('load', () => {
     //Ejemplos
     var conf = {
             'mark': 'button'
-        ,    'id' : 'btn'
+        ,    'id' : '1-1-1'
         ,    'css': { backgroundColor : 'blue' }
         , 'class' : 'primary'
         ,  'text' : 'Boton de Prueba'
@@ -43,7 +43,7 @@ $(window).on('load', () => {
     }
 
     //btns
-    // $().neptune('addElem', 'body', 'prefBtn')
+    // $().neptune('addElem', 'body', conf)
     // $('body').neptune('killElem', conf, 'asdkjflkj')
     // $('body').neptune('killElem', 'btn')
 
@@ -57,4 +57,9 @@ $(window).on('load', () => {
     // Kill navbar
     // $('body').neptune('killElem', navba, 'body')
     // $('body').neptune('killElem', elem)
+
+    // volcado de warnings
+    // Permite la búsqueda por tipo: 'omit', 'type' 
+    // getWarns()
+    // getWarns('omit')
 });

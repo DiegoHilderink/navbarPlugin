@@ -108,10 +108,23 @@ La llamada a sus métodos se realiza mediante la línea de código:
  Como hemos visto, 'conf' es la configuración de un elemento, está estructurado por un array asociativo que contiene una serie de claves que deberás tener en cuenta en función de lo que quieras añadir a dichos elementos.
 </p>
 
+<p>
+ Si al método en cuestión se le pasa un elemento de tipo string, si coincide con una de las configuraciones básicas ya implementadas, la cargará. En caso contrario mostrará un error por falta de configuración.
+</p>
+
+###### Constantes de elementos:
+
+```javascript 
+   const pref = {
+    'prefBtn' : prefBtn,  //boton predefinido
+    'prefNav' : prefNav,  //barra de navegación predefinida
+}
+```
+
 ###### Ejemplos:
 
 
-```
+```javascript
 //Array de configuración de un botón 
 var conf = {
         'mark': 'button'
@@ -140,11 +153,13 @@ var nav  = {
 
 * 'addHiden' : Confiere a la BARRA DE NAVEGACIÓN el evento de ocultación mediante hover.
 
+* getWarns() : Obtiene por salida todos los warnings que se hayan podido generar.
+
 </p>
 
 ### Ejemplo de Código:
 
-```
+```javascript
 $(window).on('load', () => {
     var conf = {
         'mark': 'button'
