@@ -52,13 +52,56 @@ const methods = {
             }
         }
     },
-    addBack = (elem, config) => {
-        if (!checkArguments(elem, 2)){
+    addBack: (father, config) => {
+        if (!checkArguments(father,config, 3)){
+            errorExit('paramNum')
+            return
+        }
+        
+        // TODO comprobar primer elemento de config
+        // TODO expresion regular para rgb(255, 255, 255)
+
+        if (isStr(father) && isStr(config)) {
+            $.each(regValues, (k, v) => {
+                if (config.match(v)){
+                    key = k
+                    value = config.match(v)
+                    return false;
+                }
+            })
+            config = setAction(key, config)
+            $(father).css(config[0], config[1]);
+            
+        } else {
+            warnExit('type')
+        }
+    },
+    addForm: (father, config) => {
+        if (!checkArguments(father, config, 3)){
             errorExit('paramNum')
             return
         }
 
-        //implement reg exp for id and url
+        if (checkFather(father)) {
+            errorExit('father')
+            return
+        }
+    
+        if (typeof(config) === 'string'){
+            config = getPref(config)
+            config ? $('body').neptune('addForm', father, config): errorExit('const')
+        } else {
+            // Hace algo
+            $(father).append(`<form id=${config['id']}>`)
+            auxArray = config
+            delete auxArray['id'];
+            $.each(auxArray, (k, v) => {
+                $('body').neptune('addElem', config['id'], {'mark': 'label', 'id': v['id'], 'text': k})
+                $(config['id']).append(`<label for=${v['id']}>${k}`)
+                $(config['id']).append(`<input type=${v['type']} id=${v['id']} name=${v['id']}>`)
+            })
+        }
+        
     },
     killElem: (elem) => {
         if (!checkArguments(elem, 2)){
@@ -164,9 +207,4 @@ function hidden(father){
             $(son).hide(1500) && aux.attr('show', false)
         :   $(son).show(1500) && aux.attr('show', true)
     })
-}
-
-function getPref(k){
-    return pref[k] !== undefined && pref[k] !== null ?
-         pref[k] : false;
 }

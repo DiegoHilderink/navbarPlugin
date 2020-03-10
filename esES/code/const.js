@@ -11,6 +11,7 @@ const errors = {
     'paramNum': "The number of arguments are wrong",
     'error'   : "That error is not supported",
     'const'   : "Constante no definida",
+    'matches' : "No matches found",
     ''        : ""
 }   
 
@@ -53,12 +54,29 @@ const prefNav = {
     }
 }
 
+// Configuración base de un formulario.
+const prefForm = {
+        'id'         : 'exampleForm'
+    ,   'Nombre'     : {'type' : 'text' , 'id': 'name'}
+    ,   'Telefono'   : {'type' : 'tel' , 'id': 'phone'}
+    ,   'Contraseña' : {'type' : 'password', 'id': 'pwd'}
+    ,   'Email'      : {'type' : 'email', 'id': 'email'}
+}
+
 const hiddens = {1: '#1', 2: '#2', 3: '#3'}
 
 //Constantes de elementos
 const pref = {
-    'prefBtn' : prefBtn,
-    'prefNav' : prefNav,
+    'prefBtn'  : prefBtn,
+    'prefNav'  : prefNav,
+    'prefForm' : prefForm,
+}
+
+//Constantes de expresiones regulares de tipo
+const regValues = {
+        'hex' : /(^(\w|\d)(\w|\d){5})$|(^(\w|\d)(\w|\d){2})$/
+    ,   'rgb' : /^(rgb)\((((1?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))\,){2}((1?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))\)$/
+    ,   'url' : /(\.\.){0,}\/{0,}[a-zA-Z0-9\.\-_]{1,}(\/[a-zA-Z0-9\.\-_]{0,}){0,}/
 }
 
 var count = 0;

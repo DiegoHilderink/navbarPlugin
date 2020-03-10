@@ -25,12 +25,10 @@ $(window).on('load', () => {
         ,  'text' : 'Boton de Prueba'
     }
 
-    var elem = {'id'   : 'btn'}
-
     var navBig = {
             'Menu' : {
                 'id'     : '1',
-                'Productos' : {'id': '1-1', 'Food' : {'id' : '1-1-1'}},
+                'Productos' : {'id': '1-1'},
                 'Categorias' : {'id': '1-2'},
             },
             'Nosotros' : {
@@ -42,7 +40,7 @@ $(window).on('load', () => {
             }
     }
 
-    //btns
+    // btns
     // $().neptune('addElem', 'body', conf)
     // $('body').neptune('killElem', conf, 'asdkjflkj')
     // $('body').neptune('killElem', 'btn')
@@ -50,16 +48,26 @@ $(window).on('load', () => {
     // Por el momento no es posible ocultar elementos mediante el método addHiden
     // Solo los menús
     // Navbar
-    $('body').neptune('addNav', 'body', navBig)
-    $('body').neptune('addHiden', hiddens)
-    //  $('body').neptune('addElem', '.navDiv', conf)
+    // $('body').neptune('addNav', 'body', navBig)
+    // $('body').neptune('addHiden', hiddens)
+    // $('body').neptune('addElem', '.navDiv', conf)
+
+    // Add Formualrio
+    $('body').neptune('addForm', 'body', 'prefForm')
     
     // Kill navbar
     // $('body').neptune('killElem', navba, 'body')
     // $('body').neptune('killElem', elem)
 
+    // backgrounds
+    // $('body').neptune('addBack', 'body', 'aaa')
+    // $('body').neptune('addBack', 'body', 'rgb(254,255,98)')
+    // $('body').neptune('addBack', 'body', 'https://tecnovortex.com/wp-content/uploads/2019/04/wallpaper-engine.jpg')
+    // $('body').neptune('addBack', 'body', 'img/flor.png')
+
     // volcado de warnings
     // Permite la búsqueda por tipo: 'omit', 'type' 
     // getWarns()
     // getWarns('omit')
+    // getWarns('type')
 });

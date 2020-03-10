@@ -2,7 +2,7 @@
 // @e-mail: diego.hilderink@iesdonana.org
 // License: GNU License 2020
 
-
+// check this
 function checkOpened(aux, son){
     aux = 'li[show]:not('+aux+')'
     prueba(aux) 
@@ -10,7 +10,20 @@ function checkOpened(aux, son){
     $(son).hide(1500);
 }
 
-//Solve This(?) 
+function getPref(k){
+    return pref[k] !== undefined && pref[k] !== null ?
+         pref[k] : false;
+}
+
+function setAction(opc, config) {
+    switch (opc) {
+        case 'hex' : return ['background-color',`#${config}`]
+        case 'rgb' : return ['background-color',config]
+        case 'url' : return ['background-image', `url(${config})`]
+        default : warnExit('type')
+    }
+}
+
 //Comprobar el padre que recibe, si es un id, si es una clase o etiqueta.
 // Si es id y existe, negar.
 function checkThis(elem){
@@ -20,14 +33,18 @@ function checkThis(elem){
         return elem.attr('class')
     } else if (checkFather(elem.prev().prop('tagName'))){
         //Esto tiene que ser una etiqueta
-        return elem.prev().prop('tagName')
+        return elem.prev().prop('tagName');
     }else{
-        return false
+        return false;
     }
 }
 
 function checkFather(father) {
-    return !$(father).length 
+    return !$(father).length;
+}
+
+function isStr(elem){
+    return typeof(elem) === 'string';
 }
 
 function isIn(k, config) {
