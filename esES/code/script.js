@@ -29,16 +29,16 @@ $(window).on('load', () => {
 
     var navBig = {
             'Menu' : {
-                'id'     : 'op1',
-                'Productos' : {'id': 'subOp1', 'Food' : {'id' : 'son'}},
-                'Categorias' : {'id': 'subOp2'},
+                'id'     : '1',
+                'Productos' : {'id': '1-1', 'Food' : {'id' : '1-1-1'}},
+                'Categorias' : {'id': '1-2'},
             },
             'Nosotros' : {
-                'id'     : 'op2',
-                'Departamentos' : {'id': 'subOp3'}, 
+                'id'     : '2',
+                'Departamentos' : {'id': '2-1'}, 
             },
             'Ayuda' : {
-                'id': 'op3'
+                'id': '3'
             }
     }
 

@@ -40,6 +40,9 @@ const methods = {
 
                 genList(config, '.navbar');
             } else {
+
+                // if (father.length === 6)
+                
                 var id = 'sub' + father.substr(1)
                 var aux = {'mark':'ul', 'class': 'subMenu', 'id': id}            
                 $('body').neptune('addElem', father, aux)
@@ -48,6 +51,14 @@ const methods = {
                 genList(config, id)
             }
         }
+    },
+    addBack = (elem, config) => {
+        if (!checkArguments(elem, 2)){
+            errorExit('paramNum')
+            return
+        }
+
+        //implement reg exp for id and url
     },
     killElem: (elem) => {
         if (!checkArguments(elem, 2)){
@@ -145,8 +156,6 @@ function genList(config, father){
 function hidden(father){
     var aux = $(father)
     var son = '#sub'+ father.substr(1, 1)
-    
-    prueba(son)
 
     aux.attr('show', true)
     $(son).hide() && aux.attr('show', false)
