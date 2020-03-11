@@ -92,16 +92,20 @@ const methods = {
             config ? $('body').neptune('addForm', father, config): errorExit('const')
         } else {
             // Hace algo
-            $(father).append(`<form id=${config['id']}>`)
-            auxArray = config
-            delete auxArray['id'];
-            $.each(auxArray, (k, v) => {
-                $('body').neptune('addElem', config['id'], {'mark': 'label', 'id': v['id'], 'text': k})
-                $(config['id']).append(`<label for=${v['id']}>${k}`)
-                $(config['id']).append(`<input type=${v['type']} id=${v['id']} name=${v['id']}>`)
+            $(father).append(`<div><form id=${config['id']} method='get'>`)
+            auxArray = `#${config['id']}`
+            thisLength = Object.keys(config).length-1
+            thisCount = 1;
+            delete config['id']
+            $.each(config, (k, v) => {
+                $('body').neptune('addElem', auxArray, {'mark': 'label', 'for': v['id'], 'text': k})
+                $(auxArray).append('<br>')
+                $('body').neptune('addElem', auxArray, {'mark': 'input', 'name': v['id'], 'id': v['id'], 'type': v['type']})
+                if (iterator(thisLength, thisCount++)) { $(auxArray).append('<br>') }
             })
+
+            $('body').neptune('addElem', auxArray, 'prefBtn')
         }
-        
     },
     killElem: (elem) => {
         if (!checkArguments(elem, 2)){
@@ -176,6 +180,9 @@ function lecturaConf(config) {
     isIn('attr', config) ? aux.attr(config['attr']) : warnExit('omit')
     isIn('css', config) ? aux.css(config['css']) : warnExit('omit')
     isIn('id', config) ? aux.attr('id', config['id']) : warnExit('omit')
+    isIn('type', config) ? aux.attr('type', config['type']) : warnExit('omit')
+    isIn('name', config) ? aux.attr('name', config['name']) : warnExit('omit')
+    isIn('for', config) ? aux.attr('for', config['for']) : warnExit('omit')
     isIn('class', config) ? aux.addClass(config['class']) : warnExit('omit')
     isIn('text', config) ? aux.text(config['text']) : warnExit('omit')
 

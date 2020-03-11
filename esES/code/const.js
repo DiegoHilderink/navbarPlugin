@@ -31,6 +31,7 @@ const prefBtn = {
                   , color           : 'white'
                   //, fontStyle       : 'italic'
                   , margin          : '1%'
+                  , marginTop       : '2%'
                   , padding         : '1%'
                 }
     , 'class' : 'primary'
